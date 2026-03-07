@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع عمار الصلوي الذكي</title>
+    <style>
+        :root {
+            --primary-color: #e31e24;
+            --secondary-color: #008a46;
+            --dark-blue: #005596;
+            --light-bg: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .container {
+            max-width: 500px; width: 92%;
+            margin: 40px 0; background: white;
+            padding: 25px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .step-card {
+            background: #fff; border-right: 5px solid var(--secondary-color);
+            margin: 15px 0; padding: 15px;
+            text-align: right; border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .step-card h3 { margin: 0 0 5px 0; color: var(--dark-blue); font-size: 18px; }
+        .step-card p { margin: 0; font-size: 14px; color: #555; }
+
+        .btn {
+            display: block; width: 100%; padding: 15px;
+            margin: 10px 0; text-decoration: none;
+            border-radius: 10px; font-weight: bold;
+            box-sizing: border-box; transition: 0.3s;
+        }
+
+        .btn-register { background: var(--primary-color); color: white; }
+        .btn-whatsapp { background: #25d366; color: white; }
+
+        .highlight { color: var(--primary-color); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>مرحباً بك في مشروعك الذكي 🚀</h1>
+        <p>معك <b>عمار الصلوي</b>، مبرمج ورائد أعمال. إليك كيف نحقق الدخل معاً:</p>
+
+        <div style="margin: 25px 0;">
+            <div class="step-card">
+                <h3>1. استهلاك ذكي ☕</h3>
+                <p>تشتري منتجاتك الاستهلاكية (قهوة، معجون، صابون) من DXN وبتحصل على <span class="highlight">نقاط تراكمية</span>.</p>
+            </div>
+
+            <div class="step-card">
+                <h3>2. أرباح المشتريات 💸</h3>
+                <p>كل منتج تشتريه باسمك أو يشتري غيرك برقمك، الشركة ترجع لك <span class="highlight">أرباح نقدية</span> شهرياً.</p>
+            </div>
+
+            <div class="step-card" style="border-right-color: var(--dark-blue);">
+                <h3>3. بناء الفريق 👥</h3>
+                <p>عندما يسجل أشخاص عن طريقك، تحصل على <span class="highlight">عمولات</span> على كل مشترياتهم في أي مكان بالعالم.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <a href="https://eworld.dxn2u.com/s/accreg/ar/829705997" class="btn btn-register">
+            سجل عضوية مجانية وابدأ الآن
+        </a>
+
+        <a href="https://wa.me/9677367376286?text=أهلاً عمار، حابب أفهم أكثر عن نظام النقاط" class="btn btn-whatsapp">
+            تواصل معي واتساب للاستفسار
+        </a>
+
+        <p style="font-size: 12px; color: #999; margin-top: 15px;">رقم العضوية: 829705997</p>
+    </div>
+<div style="text-align: center; margin-top: 20px; padding-bottom: 40px;">
+    <button onclick="shareOnWhatsApp()" style="background-color: #128C7E; color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        📢 شارك هذا المشروع مع أصدقائك
+    </button>
+</div>
+<div style="text-align: center; margin-top: 20px; padding-bottom: 40px;">
+    <a href="/dxx.html" style="background-color: #128C7E; color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        عرض المنتجات
+    </a>
+</div>
+<script>
+function shareOnWhatsApp() {
+    // النص الذي سيتم إرساله عند المشاركة
+    const text = "يا هلا! شوف هذا المشروع الذكي والمنتجات الصحية اللي يكلمني عنها عمار السلوي. تقدر تبدأ مشروعك الخاص من البيت. تصفح الرابط من هنا: ";
+    const url = window.location.href; // سيأخذ رابط صفحتك الحالي تلقائياً
+    
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + url)}`;
+    window.open(whatsappUrl, '_blank');
+}
+</script>
+
+</body>
+</html>

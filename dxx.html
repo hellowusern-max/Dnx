@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منتجات DXN العالمية - عمار الصلوي</title>
+    <style>
+        :root {
+            --dxn-red: #e31e24;
+            --dxn-green: #008a46;
+            --dxn-blue: #005596;
+            --gold: #d4af37;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
+        .header { background: var(--dxn-blue); color: white; padding: 30px 15px; text-align: center; border-radius: 0 0 25px 25px; }
+        .section-title { color: var(--dxn-blue); margin: 25px 15px 10px; border-right: 5px solid var(--dxn-red); padding-right: 10px; }
+        
+        .product-grid { display: grid; grid-template-columns: 1fr; gap: 15px; padding: 15px; }
+        .product-card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .product-card h3 { color: var(--dxn-green); margin: 0 0 10px; font-size: 18px; }
+        .product-card p { font-size: 14px; color: #666; line-height: 1.5; }
+        .tag { display: inline-block; background: #e8f5e9; color: var(--dxn-green); padding: 2px 8px; border-radius: 5px; font-size: 12px; font-weight: bold; }
+
+        .btn { display: block; width: 90%; margin: 15px auto; padding: 15px; text-align: center; border-radius: 10px; text-decoration: none; font-weight: bold; box-sizing: border-box; }
+        .btn-order { background: var(--dxn-green); color: white; }
+        .btn-reg { background: var(--dxn-red); color: white; }
+        /* تنسيق الصورة داخل الكرت */
+.product-card img {
+    width: 80px; /* حجم صغير متناسق */
+    height: 80px;
+    object-fit: cover; /* لضمان عدم تمدد الصورة */
+    border-radius: 10px;
+    cursor: pointer;
+    float: left; /* تجعل النص يلتف حولها */
+    margin-right: 15px;
+    border: 1px solid #eee;
+    transition: transform 0.3s;
+}
+
+.product-card img:hover {
+    transform: scale(1.05); /* تأثير بسيط عند المرور بالماوس */
+}
+
+/* تنظيف الطفو (Clearfix) لضمان عدم تداخل الكروت */
+.product-card::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* تنسيق النافذة المنبثقة (المكبر) */
+#imageViewer {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+#imageViewer img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+#imageViewer span {
+    position: absolute;
+    top: 20px; right: 30px;
+    color: white; font-size: 40px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>عالم الصحة والجمال مع DXN 🌿</h1>
+    <p>بإشراف المبرمج: عمار الصلوي</p>
+</div>
+
+<h2 class="section-title">✨ مستحضرات التجميل و
+العناية الكورية</h2>
+<div id="imageViewer">
+    <span onclick="closeImage()">&times;</span>
+    <img id="fullImage">
+</div>
+<div class="product-grid">
+    <div class="product-card">
+          <img src="https://www.dxnarabia.com/product/images/bh/RGLP70_ReishiMushroomPowder70g.jpg" alt="أحمر شفاه جانوزي" onclick="viewImage(this.src)">
+        <span class="tag">الأكثر مبيعاً</span>
+        <h3>مجموعة جانوزي (Ganozhi)</h3>
+        <p>مستخلصة من الفطر الريشي، تعمل على تجديد خلايا البشرة وتمنحك نضارة كورية طبيعية. (منظف، مقشر، مرطب).</p>
+    </div>
+
+<div class="product-card">
+    <img src="https://www.dxnarabia.com/product/images/bh/SC015_PearlyRed.jpg" alt="أحمر شفاه جانوزي" onclick="viewImage(this.src)">
+    <h3>أحمر شفاه جانوزي 💄</h3>
+    <p>طبيعي 100%، غني بزبدة الشيا وفيتامين E، يعطي لوناً جذاباً مع ترطيب عميق بدون مواد كيميائية ضارة.</p>
+</div>
+
+</div>
+
+<h2 class="section-title">🚿 العناية الشخصية اليومية</h2>
+<div class="product-grid">
+    <div class="product-card">
+       <img src="https://www.dxnarabia.com/product/images/bh/PC020_GP_Toothpaste150g.jpg" alt="أحمر شفاه جانوزي" onclick="viewImage(this.src)"
+        <h3>معجون أسنان جانوزي 🦷</h3>
+        <p>بدون فلورايد، معزز بالفطر الريشي. يعالج اللثة، يبيض الأسنان بشكل طبيعي، ومنعش جداً.</p>
+    </div>
+    <div class="product-card">
+                <img src="https://www.dxnarabia.com/product/images/bh/PC074_Oocha_Trans_Soap.jpg" alt="أحمر شفاه جانوزي" onclick="viewImage(this.src)">
+        <h3>صابون جانوزي 🧼</h3>
+        <p>ينظف البشرة بعمق ويحافظ على الزيوت الطبيعية فيها، غني بالفطر الريشي ومناسب لكل أنواع البشرة.</p>
+    </div>
+</div>
+
+<h2 class="section-title">☕ مشروبات الطاقة والصحة</h2>
+<div class="product-grid">
+    <div class="product-card">
+                <img src="https://www.dxnarabia.com/product/images/bh/LBC_LingzhiBlackCoffee.jpg" alt="أحمر شفاه جانوزي" onclick="viewImage(this.src)">
+        <h3>قهوة لينجزي السوداء (2 في 1)</h3>
+        <p>قهوة برازيلية فاخرة مع الفطر الريشي. خالية من السكر، ترفع المناعة، وتساعد في حرق الدهون.</p>
+    </div>
+    <div class="product-card">
+                <img src="https://www.dxnarabia.com/product/images/bh/COCO_Cocozhi.jpg" alt="أحمر شفاه جانوزي" onclick="viewImage(this.src)">
+        <h3>مشروب الكوكوزي (الكاكاو) 🍫</h3>
+        <p>مفضل للأطفال والشباب، يعزز النشاط الذهني والتركيز، ومذاقه رائع جداً.</p>
+    </div>
+</div>
+
+<div style="padding-bottom: 30px;">
+    <a href="https://eworld.dxn2u.com/s/accreg/ar/829705997" class="btn btn-reg">سجل عضويتك للحصول على خصم 25%</a>
+    <a href="https://wa.me/967736737628?text=أهلاً عمار، أريد طلب بعض المنتجات" class="btn btn-order">اطلب المنتجات الآن عبر الواتساب</a>
+</div>
+<div style="text-align: center; margin-top: 20px; padding-bottom: 40px;">
+    <button onclick="shareOnWhatsApp()" style="background-color: #128C7E; color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        📢 شارك هذا المشروع مع أصدقائك
+    </button>
+</div>
+
+<script>
+function shareOnWhatsApp() {
+    // النص الذي سيتم إرساله عند المشاركة
+    const text = "يا هلا! شوف هذا المشروع الذكي والمنتجات الصحية اللي يكلمني عنها عمار الصلوي. تقدر تبدأ مشروعك الخاص من البيت. تصفح الرابط من هنا: ";
+    const url = window.location.href; // سيأخذ رابط صفحتك الحالي تلقائياً
+    
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + url)}`;
+    window.open(whatsappUrl, '_blank');
+}
+function viewImage(src) {
+    document.getElementById('fullImage').src = src;
+    document.getElementById('imageViewer').style.display = 'flex';
+}
+
+function closeImage() {
+    document.getElementById('imageViewer').style.display = 'none';
+}
+
+// إغلاق النافذة عند النقر خارج الصورة
+window.onclick = function(event) {
+    let viewer = document.getElementById('imageViewer');
+    if (event.target == viewer) {
+        closeImage();
+    }
+}
+
+</script>
+
+</body>
+</html>

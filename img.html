@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض منتجات DXN - عمار السلوي</title>
+    <style>
+        :root {
+            --primary-color: #008a46;
+            --accent-color: #e31e24;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* نظام الشبكة للمعرض */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* نافذة التكبير (Lightbox) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin: 40px auto;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📸 معرض المنتجات الذكي</h1>
+    <p>تصفح أفضل المنتجات الصحية العالمية بلمسة واحدة</p>
+</header>
+
+<div class="gallery-container" id="gallery">
+    </div>
+
+<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+    <span class="close-btn">&times;</span>
+    <img id="lightbox-img" src="">
+</div>
+
+<a href="./index.html" class="back-home">⬅️ العودة للرئيسية</a>
+
+<script>
+    // مصفوفة الروابط التي أرسلتها
+    const images = [
+        "https://www.dxnarabia.com/product/images/bh/LC20_LingzhiCoffee3in1.jpg",
+        "https://www.dxnarabia.com/product/images/bh/LBC_LingzhiBlackCoffee.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB066_LingzhiCoffee3in1Lite.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB129_CordycepsCoffee3in1.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB130_CreamCoffee.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB033_GanoPineappleMix.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB143_ZhiMintPlus.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB005_Roselle285m.jpg",
+        "https://www.dxnarabia.com/product/images/bh/MOR_Morinzhi285mI.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB065_Morinzhi700ml.jpg",
+        "https://www.dxnarabia.com/product/images/bh/COCO_Cocozhi.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB032_SpirulinaCereal.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB050_Vinaigrette700ml.jpg",
+        "https://www.dxnarabia.com/product/images/bh/CORPIN_Cordypine285ml.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB155_Lemonzhi.jpg",
+        "https://www.dxnarabia.com/product/images/bh/FB301_LingzhiTeaLatte.jpg",
+        "https://www.dxnarabia.com/product/images/bh/LION_LionMane120.jpg",
+        "https://www.dxnarabia.com/product/images/bh/CORDY_Cordyceps120.jpg",
+        "https://www.dxnarabia.com/product/images/bh/RGLP70_ReishiMushroomPowder70g.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SPI120_Spirulina120.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SPI500_Spirulina500.jpg",
+        "https://www.dxnarabia.com/product/images/bh/HF082_BeePollenGranule40g.jpg",
+        "https://www.dxnarabia.com/product/images/bh/MYCO_Mycoveggie.jpg",
+        "https://www.dxnarabia.com/product/images/bh/HS250_Shampoo.jpg",
+        "https://www.dxnarabia.com/product/images/bh/BL250_BodyFoam.jpg",
+        "https://www.dxnarabia.com/product/images/bh/GTP_ToothPaste150g.jpg",
+        "https://www.dxnarabia.com/product/images/bh/OIL_MassageOil.jpg",
+        "https://www.dxnarabia.com/product/images/bh/POW_TalcumPowder.jpg",
+        "https://www.dxnarabia.com/product/images/bh/PC020_GP_Toothpaste150g.jpg",
+        "https://www.dxnarabia.com/product/images/bh/PC039_GP_Shampoo.jpg",
+        "https://www.dxnarabia.com/product/images/bh/TTC-TeaTreeCream.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC010_Toner.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC011_MositurizingEmulsion.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC009_LiquidCleanser.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC012_ChubbyBabyOil.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC014_CocoRed.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC015_PearlyRed.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC016_PearlyPink.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC017_PearlyGrape.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC020_CleansingGel.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC021_HydratingToner.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC022_AquaGel.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC023_NutricareCream.jpg",
+        "https://www.dxnarabia.com/product/images/bh/SC024_Hand&BodyLotion.jpg"
+    ];
+
+    const gallery = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    // إنشاء العناصر برمجياً (Automation)
+    images.forEach(url => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="${url}" loading="lazy" alt="Product">`;
+        item.onclick = () => {
+            lightboxImg.src = url;
+            lightbox.style.display = 'flex';
+        };
+        gallery.appendChild(item);
+    });
+</script>
+
+</body>
+</html>
